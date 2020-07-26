@@ -1,0 +1,395 @@
+{% extends 'accounts/base.html' %}
+{% load static %}
+
+{% block stylesheets %}
+
+{% endblock stylesheets %}
+
+{% block headscript %}
+{% endblock headscript %}
+
+{% block content %}
+<div class="header-bg">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 mb-4 pt-5">
+                <div id="morris-bar-example" class="dash-chart"></div>
+
+                <div class="mt-4 text-center">
+                    {% comment %} <button type="button" class="btn btn-outline-primary ml-1 waves-effect waves-light">Year 2017</button>
+                    <button type="button" class="btn btn-outline-info ml-1 waves-effect waves-light">Year 2018</button>
+                    <button type="button" class="btn btn-outline-primary ml-1 waves-effect waves-light">Year 2019</button> {% endcomment %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6 col-xl-3">
+        <div class="card text-center m-b-30">
+            <div class="mb-2 card-body text-muted">
+                <h3 class="text-info">{{all_send_sms}}</h3>
+                SMS Send
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-xl-3">
+        <div class="card text-center m-b-30">
+            <div class="mb-2 card-body text-muted">
+                <h3 class="text-purple">{{all_send_email}}</h3>
+                Email Send
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-xl-3">
+        <div class="card text-center m-b-30">
+            <div class="mb-2 card-body text-muted">
+                <h3 class="text-primary">{{all_clients}}</h3>
+                Clients
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-xl-3">
+        <div class="card text-center m-b-30">
+            <div class="mb-2 card-body text-muted">
+                <h3 class="text-danger">{{all_leads}}</h3>
+                All Leads
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end row -->
+
+<div class="row">
+
+    <div class="col-xl-4">
+        <div class="card m-b-30">
+            <div class="card-body">
+                <h4 class="mt-0 header-title">Client Vs Leads Vs Converted </h4>
+
+                <div class="row text-center m-t-20">
+                    <div class="col-6">
+                        <h5 class="">{{all_clients}}</h5>
+                        <p class="text-muted font-14">Clients</p>
+                    </div>
+                    <div class="col-6">
+                        <h5 class="">{{all_leads}}</h5>
+                        <p class="text-muted font-14">Total Leads</p>
+                    </div>
+                </div>
+
+                <div id="morris-donut-example" class="dash-chart"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-8">
+        <div class="card m-b-30">
+            <div class="card-body">
+                <h4 class="mt-0 header-title">Email Sent</h4>
+
+                <div class="row text-center m-t-20">
+                    <div class="col-4">
+                        <h5 class="">{{all_send_email}}</h5>
+                        <p class="text-muted font-14">Send Emails</p>
+                    </div>
+                    <div class="col-4">
+                        <h5 class="">{{all_emails}}</h5>
+                        <p class="text-muted font-14">Total Emails</p>
+                    </div>
+                    <div class="col-4">
+                        <h5 class="">{{all_converted}}</h5>
+                        <p class="text-muted font-14">Converted Leads</p>
+                    </div>
+                </div>
+
+                <div id="morris-area-example" class="dash-chart"></div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- end row -->
+
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card m-b-30">
+            <div class="card-body">
+                <h4 class="mt-0 m-b-30 header-title">Latest Clients</h4>
+
+                <div class="table-responsive">
+                    <table class="table m-t-20 mb-0 table-vertical">
+
+                        <tbody>
+                        {% for client in all_data %}
+                            <tr>
+                                <td>
+                                    {% comment %} <img src="assets/images/users/avatar-2.jpg" alt="user-image" class="thumb-sm rounded-circle mr-2" /> {% endcomment %}
+                                    {{client.username}}
+                                </td>
+                                <td><i class="mdi mdi-checkbox-blank-circle {% if client.account_type == True %} text-success {% else %} text-danger {% endif %}"></i>{% if client.account_type == True %} Paid {% else %} Free {% endif %}</td>
+                                <td>
+                                    {% if client.Varified == True %} Varified {% else %} Unvarified {% endif %}
+                                    <p class="m-0 text-muted font-14">Status</p>
+                                </td> 
+                                <td>
+                                    {{client.update_on}}
+                                    <p class="m-0 text-muted font-14">Date</p>
+                                </td>
+                                {% comment %} <td>
+                                    <button type="button" class="btn btn-secondary btn-sm waves-effect">Edit</button>
+                                </td> {% endcomment %}
+                            </tr>
+                            {% endfor %}
+                            {% comment %} <tr>
+                                <td>
+                                    <img src="assets/images/users/avatar-3.jpg" alt="user-image" class="thumb-sm rounded-circle mr-2" />
+                                    Mathias N. Klausen
+                                </td>
+                                <td><i class="mdi mdi-checkbox-blank-circle text-warning"></i> Waiting payment</td>
+                                <td>
+                                    $8,541
+                                    <p class="m-0 text-muted font-14">Amount</p>
+                                </td>
+                                <td>
+                                    10/11/2016
+                                    <p class="m-0 text-muted font-14">Date</p>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-secondary btn-sm waves-effect">Edit</button>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <img src="assets/images/users/avatar-4.jpg" alt="user-image" class="thumb-sm rounded-circle mr-2" />
+                                    Nikolaj S. Henriksen
+                                </td>
+                                <td><i class="mdi mdi-checkbox-blank-circle text-success"></i> Confirm</td>
+                                <td>
+                                    $954
+                                    <p class="m-0 text-muted font-14">Amount</p>
+                                </td>
+                                <td>
+                                    8/11/2016
+                                    <p class="m-0 text-muted font-14">Date</p>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-secondary btn-sm waves-effect">Edit</button>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <img src="assets/images/users/avatar-5.jpg" alt="user-image" class="thumb-sm rounded-circle mr-2" />
+                                    Lasse C. Overgaard
+                                </td>
+                                <td><i class="mdi mdi-checkbox-blank-circle text-danger"></i> Payment expired</td>
+                                <td>
+                                    $44,584
+                                    <p class="m-0 text-muted font-14">Amount</p>
+                                </td>
+                                <td>
+                                    7/11/2016
+                                    <p class="m-0 text-muted font-14">Date</p>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-secondary btn-sm waves-effect">Edit</button>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <img src="assets/images/users/avatar-6.jpg" alt="user-image" class="thumb-sm rounded-circle mr-2" />
+                                    Kasper S. Jessen
+                                </td>
+                                <td><i class="mdi mdi-checkbox-blank-circle text-success"></i> Confirm</td>
+                                <td>
+                                    $8,844
+                                    <p class="m-0 text-muted font-14">Amount</p>
+                                </td>
+                                <td>
+                                    1/11/2016
+                                    <p class="m-0 text-muted font-14">Date</p>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-secondary btn-sm waves-effect">Edit</button>
+                                </td>
+                            </tr> {% endcomment %}
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% comment %} 
+    <div class="col-xl-4">
+        <div class="card m-b-30">
+            <div class="card-body">
+                <h4 class="mt-0 m-b-15 header-title">Recent Activity Feed</h4>
+
+                <ol class="activity-feed mb-0">
+                    <li class="feed-item">
+                        <span class="date">Sep 25</span>
+                        <span class="activity-text">Responded to need “Volunteer Activities”</span>
+                    </li>
+
+                    <li class="feed-item">
+                        <span class="date">Sep 24</span>
+                        <span class="activity-text">Added an interest “Volunteer Activities”</span>
+                    </li>
+                    <li class="feed-item">
+                        <span class="date">Sep 23</span>
+                        <span class="activity-text">Joined the group “Boardsmanship Forum”</span>
+                    </li>
+                    <li class="feed-item">
+                        <span class="date">Sep 21</span>
+                        <span class="activity-text">Responded to need “In-Kind Opportunity”</span>
+                    </li>
+                    <li class="feed-item">
+                        <span class="date">Sep 18</span>
+                        <span class="activity-text">Created need “Volunteer Activities”</span>
+                    </li>
+                    <li class="feed-item">
+                        <span class="date">Sep 17</span>
+                        <span class="activity-text">Attending the event “Some New Event”. Responded to needed.</span>
+                    </li>
+                    <li class="feed-item pb-1">
+                        <span class="activity-text">
+                            <a href="" class="text-primary">More Activities</a>
+                        </span>
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </div> {% endcomment %}
+
+
+</div>
+<!-- end row -->
+
+
+{% endblock %}
+
+{% block script %}
+
+<!--Morris Chart-->
+<script src="{% static 'lead_manager/assets/plugins/morris/morris.min.js' %}"></script>
+<script src="{% static 'lead_manager/assets/plugins/raphael/raphael-min.js' %}"></script>
+
+{% comment %} <script src="{% static 'lead_manager/assets/pages/dashboard.js' %}"></script> {% endcomment %}
+{% endblock %}
+
+{% block extrascript %}
+
+<script>
+!function ($) {
+    "use strict";
+    var clients = {{all_clients}}
+    var send_sms = {{all_send_email}}
+    var leads = {{all_leads}}
+    var converted = {{all_converted}}
+    var emails = {{all_emails}}
+    var Dashboard = function () {
+    };
+        //creates Bar chart
+        Dashboard.prototype.createBarChart = function (element, data, xkey, ykeys, labels, lineColors) {
+            Morris.Bar({
+                element: element,
+                data: data,
+                xkey: xkey,
+                ykeys: ykeys,
+                labels: labels,
+                gridLineColor: 'rgba(255,255,255,0.1)',
+                gridTextColor: '#98a6ad',
+                barSizeRatio: 0.2,
+                resize: true,
+                hideHover: 'auto',
+                barColors: lineColors
+            });
+        },
+
+        //creates area chart
+        Dashboard.prototype.createAreaChart = function (element, pointSize, lineWidth, data, xkey, ykeys, labels, lineColors) {
+            Morris.Area({
+                element: element,
+                pointSize: 0,
+                lineWidth: 0,
+                data: data,
+                xkey: xkey,
+                ykeys: ykeys,
+                labels: labels,
+                resize: true,
+                gridLineColor: '#eee',
+                hideHover: 'auto',
+                lineColors: lineColors,
+                fillOpacity: .6,
+                behaveLikeLine: true
+            });
+        },
+
+        //creates Donut chart
+        Dashboard.prototype.createDonutChart = function (element, data, colors) {
+            Morris.Donut({
+                element: element,
+                data: data,
+                resize: true,
+                colors: colors,
+            });
+        },
+
+        Dashboard.prototype.init = function () {
+
+            //creating bar chart
+            var $barData = [
+                {y: 'Jan', a: 100, b: 90},
+                {y: 'Feb', a: 75, b: 65},
+                {y: 'Mar', a: 50, b: 40},
+                {y: 'Apr', a: 75, b: 65},
+                {y: 'May', a: 50, b: 40},
+                {y: 'Jun', a: 75, b: 65},
+                {y: 'July', a: 100, b: 90},
+                {y: 'Aug', a: 90, b: 75},
+                {y: 'Sep', a: 75, b: 65},
+                {y: 'Oct', a: 50, b: 40},
+                {y: 'Nov', a: 75, b: 65},
+                {y: 'Dec', a: 100, b: 90},
+                {y: 'Jan', a: 90, b: 75}
+            ];
+            this.createBarChart('morris-bar-example', $barData, 'y', ['a', 'b'], ['Series A', 'Series B'], ['#ffa726','#4bbbce']);
+
+            //creating area chart
+            var $areaData = [
+                {y: '2014', a: 0, b: 0, c:0},
+                {y: '2015', a: 0, b: 0, c:0},
+                {y: '2016', a: 0, b: 0, c:0},
+                {y: '2017', a: 0, b: 0, c:0},
+                {y: '2018', a: 0, b: 0, c:0},
+                {y: '2019', a: 0, b: 0, c:0},
+                {y: '2020', a: send_sms, b: emails, c:converted}
+            ];
+            this.createAreaChart('morris-area-example', 0, 0, $areaData, 'y', ['a', 'b', 'c'], ['Series A', 'Series B', 'Series C'], ['#ffa726', '#ccc', '#4bbbce']);
+
+            //creating donut chart
+            var $donutData = [
+                {label: "Clients", value: clients},
+                {label: "Leads", value: leads},
+                {label: "Converted", value: converted}
+            ];
+            this.createDonutChart('morris-donut-example', $donutData, ['#f0f1f4', '#ffa726', '#4bbbce']);
+
+          
+        },
+        //init
+        $.Dashboard = new Dashboard, $.Dashboard.Constructor = Dashboard
+}(window.jQuery),
+
+//initializing
+    function ($) {
+        "use strict";
+        $.Dashboard.init();
+    }(window.jQuery);
+</script>
+{% endblock extrascript %}

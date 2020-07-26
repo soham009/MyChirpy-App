@@ -1,0 +1,46 @@
+{% extends 'client_leads/base.html' %}
+{% load static %}
+
+{% block stylesheets %}
+{% endblock stylesheets %}
+
+{% block headscript %}
+{% endblock headscript %}
+
+{% block content %}
+
+<div class="wrapper d-flex align-items-stretch">
+    <!-- Page Content  -->
+    <div id="content" class="p-4 p-md-5 pt-5">
+       <h3>Add Email</h3>
+       <hr>
+       <form action="#" method="post">
+        {% csrf_token %}
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="subject"> Subject</label>
+                <input type="text" class="form-control border border-dark" id="subject" name="subject" placeholder="Subject">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="message">Message</label>
+                <input type="text" class="form-control border border-dark" id="message" name="message" placeholder="Message">
+             </div>
+        </div>
+
+        
+
+        <button type="submit" class="btn btn-primary">ADD SMS</button>
+    </form>
+
+
+    </div>
+</div>
+
+{% endblock %}
+
+{% block script %}
+
+{% endblock %}
+
+{% block extrascript %}
+{% endblock %}

@@ -1,0 +1,78 @@
+{% extends 'client_leads/base.html' %}
+{% load static %}
+
+{% block stylesheets %}
+{% endblock stylesheets %}
+
+{% block headscript %}
+{% endblock headscript %}
+
+{% block content %}
+
+<div class="wrapper d-flex align-items-stretch">
+    <!-- Page Content  -->
+    <div id="content" class="p-4 p-md-5 pt-5">
+       <h3>Add Lead</h3>
+       <hr>
+       <form action="#" method="post">
+        {% csrf_token %}
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label for="name"> Name</label>
+                <input type="text" class="form-control border border-dark" id="name" name="name" placeholder="Name" required>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="company_name"> Company Name</label>
+                <input type="text" class="form-control border border-dark" id="company_name" name="company_name" placeholder="Company Name">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="designation"> Designation</label>
+                <input type="text" class="form-control border border-dark" id="designation" name="designation" placeholder="Designation">
+            </div>
+        </div>
+         
+        <div class="form-group">
+         </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="address">Address</label>
+                <input type="text" class="form-control border border-dark" id="address" name="address" placeholder="Address">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="telephone">Telephone</label>
+                <input type="text" class="form-control border border-dark" id="telephone" name="telephone_no" placeholder="Telephone">
+            </div>
+           
+        </div>
+        
+
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label for="email">Email</label>
+                <input type="email" class="form-control border border-dark" name="email_id" placeholder="Email" required>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="mobile">Mobile</label>
+                <input type="number" class="form-control border border-dark" id="mobile_no" name="mobile_no" placeholder="Mobile" required>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="website">  Website</label>
+                <input type="text" class="form-control border border-dark" id="website" name="website" placeholder="Website">
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">ADD LEAD</button>
+    </form>
+
+
+    </div>
+</div>
+
+{% endblock %}
+
+{% block script %}
+
+{% endblock %}
+
+{% block extrascript %}
+{% endblock %}

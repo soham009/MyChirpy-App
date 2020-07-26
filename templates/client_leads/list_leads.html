@@ -1,0 +1,69 @@
+{% extends 'client_leads/base.html' %}
+{% load static %}
+
+{% block stylesheets %}
+{% endblock stylesheets %}
+
+{% block headscript %}
+{% endblock headscript %}
+
+{% block content %}
+
+<div class="wrapper d-flex align-items-stretch">
+    <!-- Page Content  -->
+    <div id="content" class="p-4 p-md-5 pt-5">
+       <h3>Lead List</h3>
+       <hr>
+        <!--data table-->
+        <table id="example" class="ui celled table" style="width:100%;text-align: center;">
+            <thead>
+                {% comment %} <tr>
+                    <th>Name</th>
+                    <th>Company Name</th>
+                    <th>Designation</th>
+                    <th>Address</th>
+                    <th>Telephone</th>
+                    <th>Email </th>
+                    <th>Mobile </th>
+                    <th>Website </th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr> {% endcomment %}
+            </thead>
+            <tbody>
+            {% for lead in all_data %}
+                <tr>
+                    <td>{{lead.name}}</td>
+                    <td>{{lead.company_name}}</td>
+                    <td>{{lead.designation}}</td>
+                    <td>{{lead.address}}</td>
+                    <td>{{lead.telephone_no}}</td>
+                    <td>{{lead.email_id}}</td>
+                    <td>{{lead.mobile_no}}</td>
+                    <td>{{lead.website}}</td>
+                    <td><button class="btn btn-sm btn-primary"><i class="fa fa-edit"></i></button></td>
+                    <td><button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button></td>
+                </tr>
+            {% endfor %}    
+            </tbody>
+        </table>
+
+
+
+    </div>
+</div>
+
+{% endblock %}
+
+{% block script %}
+
+<!-- script for datatable-->
+<script>
+    $(document).ready(function() {
+    $('#example').DataTable();
+} );
+</script>
+{% endblock %}
+
+{% block extrascript %}
+{% endblock %}

@@ -1,0 +1,108 @@
+{% extends 'accounts/base_client.html' %}
+{% load static %}
+
+{% block stylesheets %}
+
+<!-- DataTables -->
+<link href="{% static 'lead_manager/assets/plugins/datatables/dataTables.bootstrap4.min.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'lead_manager/assets/plugins/datatables/buttons.bootstrap4.min.css' %}" rel="stylesheet" type="text/css" />
+<!-- Responsive datatable examples -->
+<link href="{% static 'lead_manager/assets/plugins/datatables/responsive.bootstrap4.min.css' %}" rel="stylesheet" type="text/css" />
+
+
+{% endblock stylesheets %}
+
+{% block headscript %}
+{% endblock headscript %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <div class="card m-b-30">
+            <div class="card-body">
+                {% comment %} <button type="submit" class="btn btn-info waves-effect waves-light" style="float: right">
+                    Add Email
+                </button> {% endcomment %}
+                <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap text-center" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+
+                    <thead>
+                        <tr>
+                            <th>Sr.No.</th>
+                            <th>Subject</th>
+                            <td>To</td>
+                            <td>Greeting</td>
+                            <th>Message</th>
+                            <th>Thank You</th>
+                            {% comment %} <th>Edit</th>
+                            <th>Delete</th> {% endcomment %}
+                        </tr>
+                    </thead>
+
+
+                    <tbody>
+                    {% for email in  all_data %}
+                        <tr>
+                            <td>{{forloop.counter}}</td>
+                            <td>{{email.subject}}</td>
+                            <td>{{email.to}}</td>
+                            <td>{{email.greeting}}</td>
+                            <td>{{email.message}}</td>
+                            <td>{{email.thank_you}}</td>
+                            {% comment %} <td>Edit</td>
+                            <td>Delete</td> {% endcomment %}
+                        </tr>
+                        {% endfor %}
+                        {% comment %} <tr>
+                            <td>2</td>
+                            <td>Hello</td>
+                            <td>Dear Sir</td>
+                            <td>Good Morning</td>
+                            <td>Visit www.finitytechserv.com</td>
+                            <td>Thank You</td>
+                            <td>Edit</td>
+                            <td>Delete</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Hello</td>
+                            <td>Dear Sir</td>
+                            <td>Good Morning</td>
+                            <td>Visit www.finitytechserv.com</td>
+                            <td>Thank You</td>
+                            <td>Edit</td>
+                            <td>Delete</td>
+                        </tr> {% endcomment %}
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div> <!-- end col -->
+</div> <!-- end row -->
+
+{% endblock %}
+
+{% block script %}
+<!-- Required datatable js -->
+<script src="{% static 'lead_manager/assets/plugins/datatables/jquery.dataTables.min.js' %}"></script>
+<script src="{% static 'lead_manager/assets/plugins/datatables/dataTables.bootstrap4.min.js' %}"></script>
+
+<!-- Buttons examples -->
+<script src="{% static 'lead_manager/assets/plugins/datatables/dataTables.buttons.min.js' %}"></script>
+<script src="{% static 'lead_manager/assets/plugins/datatables/buttons.bootstrap4.min.js' %}"></script>
+<script src="{% static 'lead_manager/assets/plugins/datatables/jszip.min.js' %}"></script>
+<script src="{% static 'lead_manager/assets/plugins/datatables/pdfmake.min.js' %}"></script>
+<script src="{% static 'lead_manager/assets/plugins/datatables/vfs_fonts.js' %}"></script>
+<script src="{% static 'lead_manager/assets/plugins/datatables/buttons.html5.min.js' %}"></script>
+<script src="{% static 'lead_manager/assets/plugins/datatables/buttons.print.min.js' %}"></script>
+<script src="{% static 'lead_manager/assets/plugins/datatables/buttons.colVis.min.js' %}"></script>
+<!-- Responsive examples -->
+<script src="{% static 'lead_manager/assets/plugins/datatables/dataTables.responsive.min.js' %}"></script>
+<script src="{% static 'lead_manager/assets/plugins/datatables/responsive.bootstrap4.min.js' %}"></script>
+
+<!-- Datatable init js -->
+<script src="{% static 'lead_manager/assets/pages/datatables.init.js' %}"></script>
+{% endblock %}
+
+{% block extrascript %}
+{% endblock extrascript %}

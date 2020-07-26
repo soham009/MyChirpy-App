@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+	{% load static %}
+<head>
+	<title>Login</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="{% static 'client_accounts/login/images/icons/favicon.ico' %}"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'client_accounts/login/fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'client_accounts/login/css/util.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'client_accounts/login/css/main.css' %}">
+<!--===============================================================================================-->
+
+<style>
+
+
+#partitioned {
+    padding-left: 10px;
+    letter-spacing: 36px;
+    background-image: linear-gradient(to left, black 70%, rgba(255, 255, 255, 0) 0%);
+    background-position: bottom;
+    background-size: 50px 2px;
+    background-repeat: repeat-x;
+    background-position-x: 35px;
+    width: 200px;
+    height: 60px;
+    margin-left: 30%;
+}
+</style>
+</head>
+<body>
+	
+	<div class="limiter">
+		<div class="container-login100" >
+			<div class="wrap-login100 p-t-20 p-b-10">
+				<form class="login100-form validate-form" action="{% url 'client_accounts:client/validation' %}" method ="post">
+					<div class="login100-form-avatar">
+                        <!--Login page profile image-->
+						<img src="{% static 'client_accounts/login/images/client_accounts.jpg' %}" alt="AVATAR">
+					</div>
+                    {% csrf_token %}
+                    <!--Login page profile title-->
+					<span class="login100-form-title p-t-0 p-b-5">
+                        <span style="color:#000">MyChirpy</span><br><br>
+
+                        <div style="text-align: center;">
+                            <h6 style="color: #5A5D5E;font-size:12px">A 4 digit OTP has been sent as an SMS to your registered mobile number. </h6>
+                            <h5 style="color: #ef435e;">{{user.Mobile_No}}</h5>
+                            <h6  style="color: #5A5D5E;font-size:12px">Please check your messages and enter the OTP below.</h6>
+                        </div>
+                    </span>
+                  
+
+                    <div >
+                    <input id="partitioned" name="Otp" class=" shadow-none" style="border: 0" type="text" pattern="\d{4}"  oninvalid="setCustomValidity('Please enter valid 4 Digit  OTP')" onchange="try{setCustomValidity('')}catch(e){}" maxlength="4">
+                    </div>
+					<input id="partitioned" name="pk" class=" shadow-none" style="border: 0" type="hidden" value="{{user.pk}}">
+
+                    <!--login button-->
+					<div class="container-login100-form-btn p-t-60">
+						<button class="login100-form-btn">
+							SUBMIT
+						</button>
+					</div>
+                  
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	
+
+	
+<!--===============================================================================================-->	
+	<script src="{% static 'client_accounts/login/vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'client_accounts/login/vendor/select2/select2.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'client_accounts/login/js/main.js' %}"></script>
+
+</body>
+</html>

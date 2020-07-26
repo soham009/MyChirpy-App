@@ -1,0 +1,74 @@
+{% extends 'accounts/base.html' %}
+{% load static %}
+
+{% block stylesheets %}
+
+{% endblock stylesheets %}
+
+{% block headscript %}
+{% endblock headscript %}
+
+{% block content %}
+<div class="row">
+{% for client in all_data %}
+    <div class="col-lg-4">
+        <div class="card m-b-30 card-body text-center">
+            <h4 class="card-title font-20 mt-0">{{client.username}}</h4>
+            
+            <a href="{% url 'accounts:client_dashboard' client.pk %}" class="btn btn-primary waves-effect waves-light">Go Dashboard</a>
+        </div>
+    </div>
+    {% endfor %}
+    {% comment %} <div class="col-lg-4 ">
+        <div class="card m-b-30 card-body text-center">
+            <h4 class="card-title font-20 mt-0">Client 2</h4>
+            <p class="card-text">With supporting text below as a natural lead-in to additional
+                content.</p>
+            <a href="#" class="btn btn-primary waves-effect waves-light">Go somewhere</a>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="card m-b-30 card-body text-center">
+            <h4 class="card-title font-20 mt-0">Client 3</h4>
+            <p class="card-text">With supporting text below as a natural lead-in to additional
+                content.</p>
+            <a href="#" class="btn btn-primary waves-effect waves-light">Go somewhere</a>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="card m-b-30 card-body text-center">
+            <h4 class="card-title font-20 mt-0">Client 4</h4>
+            <p class="card-text">With supporting text below as a natural lead-in to additional
+                content.</p>
+            <a href="#" class="btn btn-primary waves-effect waves-light">Go somewhere</a>
+        </div>
+    </div>
+
+    <div class="col-lg-4 ">
+        <div class="card m-b-30 card-body text-center">
+            <h4 class="card-title font-20 mt-0">Client 5</h4>
+            <p class="card-text">With supporting text below as a natural lead-in to additional
+                content.</p>
+            <a href="#" class="btn btn-primary waves-effect waves-light">Go somewhere</a>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="card m-b-30 card-body text-center">
+            <h4 class="card-title font-20 mt-0">Client 6</h4>
+            <p class="card-text">With supporting text below as a natural lead-in to additional
+                content.</p>
+            <a href="#" class="btn btn-primary waves-effect waves-light">Go somewhere</a>
+        </div>
+    </div> {% endcomment %}
+</div>
+<!-- end row -->
+{% endblock %}
+
+{% block script %}
+
+{% endblock %}
+
+{% block extrascript %}
+{% endblock extrascript %}

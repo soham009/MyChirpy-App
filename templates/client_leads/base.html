@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <title>MyChirpy</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+    <!--   ==============================================================================================================================  -->
+    <!--Poppins css-->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+    <!--Poppins css-->
+    <!--   ==============================================================================================================================  -->
+
+
+
+    <!--   ==============================================================================================================================  -->
+    <!--Font Awesome -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--Font Awesome -->
+    <!--   ==============================================================================================================================  -->
+
+
+
+    <!--   ==============================================================================================================================  -->
+    <!--Bootstrap CDN link-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!--Bootstrap CDN link-->
+    <!--   ==============================================================================================================================  -->
+
+
+
+
+    <!--   ==============================================================================================================================  -->
+    <!--Data tables css-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.semanticui.min.css">
+    <!--Data tables css-->
+    <!--   ==============================================================================================================================  -->
+    
+    
+
+
+
+    <!--   ==============================================================================================================================  -->
+    <!--Required Scripts-->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <!--Required Scripts-->
+    <!--   ==============================================================================================================================  -->
+
+
+    <!--   ==============================================================================================================================  -->
+    <link rel="stylesheet" href="{% static 'client_leads/css/style.css' %}">
+    <!--   ==============================================================================================================================  -->
+
+    {% block stylesheets %}
+    {% endblock stylesheets %}
+
+    {% block headscript %}
+    {% endblock headscript %}
+</head>
+
+<body>
+
+    <div class="wrapper d-flex align-items-stretch">
+        <nav id="sidebar">
+            <div class="custom-menu">
+                <button type="button" id="sidebarCollapse" class="btn btn-primary">
+                    <i class="fa fa-bars"></i>
+                    <span class="sr-only">Toggle Menu</span>
+                </button>
+            </div>
+            <div class="p-4">
+                <h1><a href="" class="logo">MyChirpy</a></h1>
+                <ul class="list-unstyled components mb-5">
+                    
+                    <li>
+                        <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> Leads</a>
+                        <ul class="collapse list-unstyled" id="pageSubmenu">
+                            <li>
+                                <a href="{% url 'client_leads:client/leads' %}">All Leads </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'client_leads:client/add_leads' %}">Add Lead </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#pageSubmenu1" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> Emails</a>
+                        <ul class="collapse list-unstyled" id="pageSubmenu1">
+                            <li>
+                                <a href="#">All Emails </a>
+                            </li>
+                            <li>
+                                <a href="#">Add Email </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#pageSubmenu3" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> SMS</a>
+                        <ul class="collapse list-unstyled" id="pageSubmenu3">
+                            <li>
+                                <a href="#">All SMS </a>
+                            </li>
+                            <li>
+                                <a href="#">Add SMS </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="">Send Bulk Email </a>
+                    </li>
+                    <li>
+                        <a href=""> Send Bulk SMS</a>
+                    </li>
+
+                    <li>
+                        <a href="#pageSubmenu4" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> Reports</a>
+                        <ul class="collapse list-unstyled" id="pageSubmenu4">
+                            <li>
+                                <a href="#"> Emails Reports </a>
+                            </li>
+                            <li>
+                                <a href="#">SMS Reports</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href=""> About Us</a>
+                    </li>
+
+
+                </ul>
+
+                <div class="mb-5">
+                    <button class="btn btn-danger" type="submit" value="submit" name="submit"> LogOut</button>
+                </div>
+
+               
+                <div class="footer">
+                    <p>
+
+                        Copyright &copy;
+                        <script>
+                            document.write(new Date().getFullYear());
+                        </script>
+                    </p>
+
+                    <p> All rights reserved | Design & Developed By Finity Techserv </p>
+
+
+                </div>
+
+            </div>
+        </nav>
+        <!-- navbar ends here-->
+
+
+
+        {% block content %}
+        {% endblock %}
+
+
+
+    </div>
+
+
+    {% block script %}
+    {% endblock %}
+
+    {% block extrascript %}
+    {% endblock %}
+
+    <!--   ==============================================================================================================================  -->
+    <!--main js script file-->
+    <script src="{% static 'chirpy/js/main.js' %}"></script>
+    <!--main js script file-->
+    <!--   ==============================================================================================================================  -->
+
+    
+    
+    
+    <!--   ==============================================================================================================================  -->
+    <!--Scripts for DataTables-->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/dataTables.semanticui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js"></script>
+   
+
+    <!--Scripts for DataTables-->
+    <!--   ==============================================================================================================================  -->
+</body>
+
+</html>

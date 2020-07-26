@@ -1,0 +1,59 @@
+{% extends 'client_lead/base.html' %}
+{% load static %}
+
+{% block stylesheets %}
+{% endblock stylesheets %}
+
+{% block headscript %}
+{% endblock headscript %}
+
+{% block content %}
+
+<div class="wrapper d-flex align-items-stretch">
+    <!-- Page Content  -->
+    <div id="content" class="p-4 p-md-5 pt-5">
+       <h3>Email List</h3>
+       <hr>
+        <!--data table-->
+        <table id="example" class="ui celled table" style="width:100%;text-align: center;">
+            <thead>
+                <tr>
+                    <th>Subject</th>
+                    <th>To</th>
+                    <th>Greeting</th>
+                    <th>Message</th>
+                    <th>Thank You</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for email in all_data %}
+                <tr>
+                    <td>{{email.subject}}</td>
+                    <td>{{email.to}} </td>
+                    <td>{{email.greeting}}</td>
+                    <td>{{email.message}} </td>
+                    <td>{{email.thank_you}}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+
+
+    </div>
+</div>
+
+{% endblock %}
+
+{% block script %}
+
+<!-- script for datatable-->
+<script>
+    $(document).ready(function() {
+    $('#example').DataTable();
+} );
+</script>
+{% endblock %}
+
+{% block extrascript %}
+{% endblock %}

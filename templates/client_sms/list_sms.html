@@ -1,0 +1,55 @@
+{% extends 'client_leads/base.html' %}
+{% load static %}
+
+{% block stylesheets %}
+{% endblock stylesheets %}
+
+{% block headscript %}
+{% endblock headscript %}
+
+{% block content %}
+
+<div class="wrapper d-flex align-items-stretch">
+    <!-- Page Content  -->
+    <div id="content" class="p-4 p-md-5 pt-5">
+       <h3>SMS List</h3>
+       <hr>
+        <!--data table-->
+        <table id="example" class="ui celled table" style="width:100%;text-align: center;">
+            <thead>
+                <tr>
+                    <th>Subject</th>
+                    <th>Message</th>
+
+                </tr>
+            </thead>
+            <tbody>
+            {% for sms in all_data %}
+                <tr>
+                    <td>{{sms.subject}}</td>
+                    <td>{{sms.message}}</td>
+                
+                </tr>
+            {% endfor %}    
+            </tbody>
+        </table>
+
+
+
+    </div>
+</div>
+
+{% endblock %}
+
+{% block script %}
+
+<!-- script for datatable-->
+<script>
+    $(document).ready(function() {
+    $('#example').DataTable();
+} );
+</script>
+{% endblock %}
+
+{% block extrascript %}
+{% endblock %}

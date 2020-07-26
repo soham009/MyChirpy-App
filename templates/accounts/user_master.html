@@ -1,0 +1,236 @@
+{% extends 'accounts/base.html' %}
+{% load static %}
+
+{% block stylesheets %}
+
+<!-- DataTables -->
+<link href="{% static 'lead_manager/assets/plugins/datatables/dataTables.bootstrap4.min.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'lead_manager/assets/plugins/datatables/buttons.bootstrap4.min.css' %}" rel="stylesheet" type="text/css" />
+<!-- Responsive datatable examples -->
+<link href="{% static 'lead_manager/assets/plugins/datatables/responsive.bootstrap4.min.css' %}" rel="stylesheet" type="text/css" />
+
+
+{% endblock stylesheets %}
+
+{% block headscript %}
+{% endblock headscript %}
+
+{% block content %}
+
+<div class="modal fade" id="add_user" tabindex="-1" role="dialog" aria-labelledby="add_statusModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content rounded-0">
+            <div class="modal-header">
+                <h5 class="modal-title text-center" id="lead_satus_modal">
+                    <font color="#000" size="5px;">Add User</font>
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span>
+                    </button>
+                </h5>
+            </div>
+            <div class="modal-body" style="border-radius: 10px;">
+                <form action="#" method="post">
+                    {% csrf_token %}
+                    {% comment %} <div class="form-row"> {% endcomment %}
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input id="name" type="text" class="form-control" name="first_name" placeholder="Enter Name">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email id </label>
+                            <input id="email" type="text" class="form-control" name="email" placeholder="Enter Email">
+                        </div>
+                         <div class="form-group">
+                            <label for="email">Mobile No </label>
+                            <input id="email" type="text" class="form-control" name="Mobile_No" placeholder="Enter Mobile No" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">User Role</label>
+                            <select class="form-control" name="user_role" required>
+                             <option>Admin</option>
+                             <option>Client</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="Username">Username</label>
+                            <input id="Username" type="text" class="form-control" name="username" placeholder="Enter Username" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="Password">Password</label>
+                            <input id="Password" type="text" class="form-control" name="password" placeholder="Enter Password" required>
+                        </div>
+                        <center>
+                            <button type="submit" class="btn-primary">Submit</button>
+                        </center>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <div class="card m-b-30">
+            <div class="card-body">
+                <button type="submit" class="btn btn-info waves-effect waves-light" data-toggle="modal" data-target="#add_user" style="float: right">
+                    Add User
+                </button>
+                {% if error_message %}
+    <p style="color:red;">{{error_message}}</p>
+    {% endif %}
+                <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap text-center" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+
+                    <thead>
+                        <tr>
+                            <th>Sr.No.</th>
+                            <th>Username</th>
+                            <th>Email</th>
+                            <th>Mobile No</th>
+                            <th>Role</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+
+
+                    <tbody>
+                    {% for user in all_data %}
+                        <tr>
+                            <td>{{forloop.counter}}</td>
+                            <td>{{user.username}}</td>
+                            <td>{{user.email}}</td>
+                            <td>{{user.Mobile_No}}</td>
+                            {% if user.user_role == 1 %}
+                            <td>Admin</td>
+                            {% else %}
+                            <td>Client</td>
+                            {% endif %}
+                            {% comment %} {% if user.user_role == 1 %} {% endcomment %}
+                            <td><button type="button" class="update-sms btn btn-sm btn-primary" data-toggle="modal" data-target="#update_user{{user.pk}}">
+                            <span class="fa fa-edit"></span></button>
+                            <div class="modal fade" id="update_user{{user.pk}}" tabindex="-1" role="dialog" aria-labelledby="add_statusModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-md" role="document">
+                            <div class="modal-content rounded-0">
+                                <div class="modal-header">
+                                    <h5 class="modal-title " id="lead_satus_modal">
+                                        <font color="#000" size="5px;">Update User</font>
+                                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span>
+                                        </button>
+                                    </h5>
+                                </div>
+                                <div class="modal-body" style="border-radius: 10px;">
+                                    <form action="{% url 'accounts:update_user' user.pk %}" method="post">
+                                        {% csrf_token %}
+                                        {% comment %} <div class="form-row"> {% endcomment %}
+                                            <div class="form-group">
+                                                <label for="name">Name</label>
+                                                <input id="name" type="text" class="form-control" name="first_name" value="{{user.first_name}}" required>
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                <label for="email">Email id </label>
+                                                <input id="email" type="text" class="form-control" name="email" value="{{data.email}}" required>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="Password">Password</label>
+                                                <input id="Password" type="text" class="form-control" name="password" placeholder="Enter Password" required>
+                                            </div>
+                                            <center>
+                                                <button type="submit" class="btn-primary">Submit</button>
+                                            </center>
+                                    </form>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+</td>
+{% comment %} {% else %}
+<td>Edit</td>
+{% endif %} {% endcomment %}
+                            <td><button type="button" data-toggle="modal" data-target="#delete_user{{user.pk}}" class="delete-sms btn btn-sm btn-danger" >
+                            <span class="fa fa-trash"></span></button>
+                            <div class="modal fade" id="delete_user{{user.pk}}" tabindex="-1" role="dialog" aria-labelledby="add_statusModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-md" role="document">
+                                <div class="modal-content rounded-0">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title text-center" id="lead_satus_modal">
+                                            <font color="#000" size="5px;">Delete User</font>
+                                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span>
+                                            </button>
+                                        </h5>
+                                    </div>
+                                    <div class="modal-body" style="border-radius: 10px;">
+                                        <form action="{% url 'accounts:delete_user' user.pk %}" method="post">
+                                            {% csrf_token %}
+                                            <center>
+                                                Are you sure you want to delete User ?
+                                            </center>
+                                            <br>
+                                            <center>
+                                                <button type="submit" class="btn-danger">Delete</button>
+                                            </center>
+                                        </form>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+</td>
+                        </tr>
+                        {% endfor %}
+                        {% comment %} <tr>
+                            <td>2</td>
+                            <td>Siddhi</td>
+                            <td>ksiddhi@gmail.com</td>
+                            <td>Admin</td>
+                            <td>View</td>
+                            <td>Edit</td>
+                            <td>Delete</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Sangram</td>
+                            <td>sangram@gmail.com</td>
+                            <td>Client</td>
+                            <td>View</td>
+                            <td>Edit</td>
+                            <td>Delete</td>
+                        </tr> {% endcomment %}
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div> <!-- end col -->
+</div> <!-- end row -->
+
+{% endblock %}
+
+{% block script %}
+<!-- Required datatable js -->
+<script src="{% static 'lead_manager/assets/plugins/datatables/jquery.dataTables.min.js' %}"></script>
+<script src="{% static 'lead_manager/assets/plugins/datatables/dataTables.bootstrap4.min.js' %}"></script>
+
+<!-- Buttons examples -->
+<script src="{% static 'lead_manager/assets/plugins/datatables/dataTables.buttons.min.js' %}"></script>
+<script src="{% static 'lead_manager/assets/plugins/datatables/buttons.bootstrap4.min.js' %}"></script>
+<script src="{% static 'lead_manager/assets/plugins/datatables/jszip.min.js' %}"></script>
+<script src="{% static 'lead_manager/assets/plugins/datatables/pdfmake.min.js' %}"></script>
+<script src="{% static 'lead_manager/assets/plugins/datatables/vfs_fonts.js' %}"></script>
+<script src="{% static 'lead_manager/assets/plugins/datatables/buttons.html5.min.js' %}"></script>
+<script src="{% static 'lead_manager/assets/plugins/datatables/buttons.print.min.js' %}"></script>
+<script src="{% static 'lead_manager/assets/plugins/datatables/buttons.colVis.min.js' %}"></script>
+<!-- Responsive examples -->
+<script src="{% static 'lead_manager/assets/plugins/datatables/dataTables.responsive.min.js' %}"></script>
+<script src="{% static 'lead_manager/assets/plugins/datatables/responsive.bootstrap4.min.js' %}"></script>
+
+<!-- Datatable init js -->
+<script src="{% static 'lead_manager/assets/pages/datatables.init.js' %}"></script>
+{% endblock %}
+
+{% block extrascript %}
+{% endblock extrascript %}
