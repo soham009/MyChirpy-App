@@ -49,7 +49,7 @@ def send_bulk_sms(request,pk):
         message = sms_object.message
         for lead in leads_list:
             lead_object = Leads.objects.get(pk=lead)   
-            resp = sendSMS('VmGUZET+Z0g-tG1019iVxThFZtQs8Iqu1JxAnIxMwv', lead_object.mobile_no,'TXTLCL', message)
+            resp = sendSMS('', lead_object.mobile_no,'TXTLCL', message)
             dic = json.loads(resp)
             SMS_Usage.objects.create(send_to_name = lead_object.name,
                                 send_to_number=lead_object.mobile_no,

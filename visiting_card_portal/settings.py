@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '2)oa8x87hs=7!6$cp(sz%nky*7kn&)47n(uouxsbw64vppa&7x'
+SECRET_KEY = ''
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -139,10 +139,10 @@ USE_TZ = True
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
 
-SEND_GRID_API_KEY = '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'
-EMAIL_HOST = 'smtp.sendgrid.net'
-EMAIL_HOST_USER = 'skilltrader.in@gmail.com'
-EMAIL_HOST_PASSWORD = 'trader1234' #sendgrid email
+SEND_GRID_API_KEY = ''
+EMAIL_HOST = ''
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = '' #sendgrid email
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

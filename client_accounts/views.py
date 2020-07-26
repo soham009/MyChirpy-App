@@ -45,7 +45,6 @@ def client_login(request):
             if user.is_active:
                 if user.Varified == False:
                     message = "Your One Time Password (OTP) for Visiting card App is :" +str(user.Otp)
-                    f1 = urllib.request.urlopen("https://www.volshebnypnstatement.in/my_gov_app?mobile_one="+str(user.Mobile_No)+"&otp_code="+str(user.Otp))
                     data = {'user':user}
                     return render(request,'client_accounts/otp.html',data)
                 else:
